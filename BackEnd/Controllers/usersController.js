@@ -33,7 +33,7 @@ async function loginUser(req, res) {
     // check if user exists or not
     const user = await User.findOne({ where: { email: email } });
     if (!user) {
-      res.status(400).json({
+      res.status(404).json({
         success: false,
         error: "User doesn't exist",
       });
@@ -50,7 +50,7 @@ async function loginUser(req, res) {
         user: safeUser,
       });
     } else {
-      res.status(400).json({
+      res.status(401).json({
         success: false,
         error: "Either email or password is incorrect",
       });
