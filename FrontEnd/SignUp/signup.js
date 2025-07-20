@@ -7,14 +7,14 @@ signupForm.addEventListener("submit", async (event) => {
 
   const name = signupForm.username.value;
   const email = signupForm.email.value;
-  const password = signupForm.email.password;
+  const password = signupForm.password.value;
+
+  console.log(name, email, password);
+  
 
   try {
     const res = await userClassInstance.signup({ name, email, password });
-
-    // if (res.response.data.success === false) {
-    //   throw new Error(res.response.data.error);
-    // }
+    window.location.replace("../Login/login.html");
   } catch (error) {
     let errorValue;
     if (error.response) {
