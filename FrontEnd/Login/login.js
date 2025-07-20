@@ -9,6 +9,7 @@ loginForm.addEventListener("submit", async (event) => {
 
   try {
     const res = await userClassInstance.login({ email, password });
+    window.location.replace("../index.html");
   } catch (error) {
     let errorMessage;
     if (error.response) {
