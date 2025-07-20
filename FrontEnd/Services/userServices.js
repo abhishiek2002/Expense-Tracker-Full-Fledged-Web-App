@@ -4,6 +4,7 @@ class User {
   }
 
   async signup({ name, email, password }) {
+  console.log(name, email, password);
     try {
       const res = await axios.post(this.baseURL + "/signup", {
         name,
