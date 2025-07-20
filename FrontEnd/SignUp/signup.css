@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('https://plus.unsplash.com/premium_photo-1720192861639-1524439fc166?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bG9naW58ZW58MHx8MHx8fDA%3D');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#mainContainer {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+}
+
+.signupImg{
+    height: 100%;
+    outline: 1px solid;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#signupForm{
+    /* outline: 1px solid; */
+    /* border-radius: 0px 10px 10px 0px; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px;
+    height: 344px;
+    justify-content: center;
+    min-width: 300px;
+    backdrop-filter: blur(3px);
+    box-shadow: 1px 1px 10px rgb(0,0,0);
+}
+
+#signupForm h1{
+    margin: 0px auto;
+}
+
+.formField{
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+
+.formField label{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.formField input{
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+#signupForm button{
+    width: max-content;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(155, 245, 155);
+    border: none;
+    transition: transform .1s linear;
+    cursor: pointer;
+}
+
+#signupForm button:hover{
+    filter: brightness(0.9);
+    outline: 1px solid;
+    transform: scale(1.1);
+}
+
+#errorField{
+    color: red;
+    text-align: center;
+}
+
+@media (width<350px) {
+    #signupForm{
+        min-width: 250px;
+    }
+}
+
+@media (width>1024px) {
+    #signupForm{
+        min-width: 450px;
+    }
+}
+
+
