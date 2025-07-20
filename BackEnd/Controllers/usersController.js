@@ -7,9 +7,9 @@ async function signupUser(req, res) {
     // check if user already exists or not
     const user = await User.findOne({ where: { email: email } });
     if (user) {
-      res.json({
+      res.status(400).json({
         success: false,
-        message: "Email is already exists",
+        error: "Email is already exists",
       });
     } else {
       const user = await User.create({ name, email, password });
