@@ -1,11 +1,13 @@
 import userClassInstance from "../Services/userServices.js";
 
+
 const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const email = loginForm.email.value;
   const password = loginForm.password.value;
+
 
   try {
     const res = await userClassInstance.login({ email, password });

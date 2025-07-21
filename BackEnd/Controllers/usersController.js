@@ -1,5 +1,5 @@
 import User from "../Models/UserModel.js";
-import sequelize from "../Utils/db-connection.js";
+import encryptInstance from "../Utils/encrypt.js";
 
 async function signupUser(req, res) {
   const { name, email, password } = req.body;
@@ -12,7 +12,14 @@ async function signupUser(req, res) {
         error: "Email is already exists",
       });
     } else {
-      const user = await User.create({ name, email, password });
+      // encrypt password
+      const encryptPassword = await encryptInstance.encrypt(password);
+
+      const user = await User.create({
+        name,
+        email,
+        password: encryptPassword,
+      });
       res.status(200).json({
         success: true,
         message: "User is signup successfully",
@@ -41,7 +48,9 @@ async function loginUser(req, res) {
     }
 
     // if user exist , check if password is correct
-    if (password === user.password) {
+    const result = await encryptInstance.compare(password, user.password);
+
+    if (result) {
       const { password, ...safeUser } = user.dataValues;
 
       res.status(200).json({

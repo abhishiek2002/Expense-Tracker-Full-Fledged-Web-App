@@ -9,9 +9,6 @@ signupForm.addEventListener("submit", async (event) => {
   const email = signupForm.email.value;
   const password = signupForm.password.value;
 
-  console.log(name, email, password);
-  
-
   try {
     const res = await userClassInstance.signup({ name, email, password });
     window.location.replace("../Login/login.html");
