@@ -1,4 +1,5 @@
 import User from "../Models/UserModel.js";
+import createToken from "../Utils/auth.js";
 import encryptInstance from "../Utils/encrypt.js";
 
 async function signupUser(req, res) {
@@ -53,10 +54,12 @@ async function loginUser(req, res) {
     if (result) {
       const { password, ...safeUser } = user.dataValues;
 
+      const token = createToken(safeUser);
+
       res.status(200).json({
         success: true,
         message: "Login successfully",
-        user: safeUser,
+        token
       });
     } else {
       res.status(401).json({

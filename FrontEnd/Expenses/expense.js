@@ -1,6 +1,7 @@
 import expenseClassInstance from "../Services/expensesServices.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
+
   const res = await expenseClassInstance.getExpenses();
   const expenses = res.data.expenses;
 

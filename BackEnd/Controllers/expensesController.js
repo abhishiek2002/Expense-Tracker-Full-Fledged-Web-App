@@ -2,9 +2,15 @@ import Expense from "../Models/ExpenseModel.js";
 
 async function addExpense(req, res) {
   const { amount, description, category } = req.body;
+  const user = req.user;
 
   try {
-    const expense = await Expense.create({ amount, description, category });
+    const expense = await Expense.create({
+      amount,
+      description,
+      category,
+      UserId: user.id,
+    });
     res.status(200).json({
       success: true,
       message: "Expense has been recorded",
@@ -18,10 +24,10 @@ async function addExpense(req, res) {
 }
 
 async function getExpenses(req, res) {
+  const user = req.user;
   try {
-    const expenses = await Expense.findAll();
-    // console.log(expenses);
-    
+    const expenses = await Expense.findAll({ where: { UserId: user.id } });
+
     res.status(200).json({
       success: true,
       message: `${expenses.length} expenses has been fetched successfully`,
@@ -35,10 +41,13 @@ async function getExpenses(req, res) {
 }
 
 async function deleteExpense(req, res) {
+  const user = req.user;
   const id = req.params.id; // id of expense
 
   try {
-    const expense = await Expense.destroy({ where: { id: id } });
+    const expense = await Expense.destroy({
+      where: { id: id, UserId: user.id },
+    });
     res.status(200).json({
       success: true,
       message: "Expense has been deleted successfully",

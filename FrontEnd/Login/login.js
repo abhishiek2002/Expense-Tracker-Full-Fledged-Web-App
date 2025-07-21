@@ -1,6 +1,8 @@
 import userClassInstance from "../Services/userServices.js";
 
 
+
+
 const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -11,6 +13,10 @@ loginForm.addEventListener("submit", async (event) => {
 
   try {
     const res = await userClassInstance.login({ email, password });
+    const token = res.data.token;
+
+    localStorage.setItem("token", token);
+    
     window.location.replace("../Expenses/expenses.html");
   } catch (error) {
     let errorMessage;

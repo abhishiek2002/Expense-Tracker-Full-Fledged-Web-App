@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="expense.css" />
+    <script>
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        window.location.replace("../Login/login.html");
+      }
+    </script>
   </head>
   <body>
     <form id="expenseForm">
@@ -31,12 +38,12 @@
     </form>
 
     <div id="expenseList">
-        <div class="expense">
-            <!-- <span>amount</span>
+      <div class="expense">
+        <!-- <span>amount</span>
             <span>description</span>
             <span>category</span>
             <button type="button" class="delete-btn">DELETE</button> -->
-        </div>
+      </div>
     </div>
 
     <!-- script -->
