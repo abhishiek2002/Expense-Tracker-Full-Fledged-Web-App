@@ -1,5 +1,6 @@
 import sequelize from "../Utils/db-connection.js";
 import User from "./UserModel.js";
+import Expense from "./ExpenseModel.js";
 
 (async () => {
   try {
@@ -10,4 +11,4 @@ import User from "./UserModel.js";
   }
 })();
 
-export {User}
+export {User, Expense}
