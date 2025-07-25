@@ -59,7 +59,7 @@ async function loginUser(req, res) {
       res.status(200).json({
         success: true,
         message: "Login successfully",
-        token
+        token,
       });
     } else {
       res.status(401).json({
@@ -75,4 +75,16 @@ async function loginUser(req, res) {
   }
 }
 
-export { signupUser, loginUser };
+async function verifyUser(req, res) {
+  const user = req.user;
+  if (user) {    
+    res.status(200).json({
+      message: "User is authentcated",
+      success: true,
+    });
+  }
+  
+  
+}
+
+export { signupUser, loginUser, verifyUser };

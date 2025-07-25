@@ -7,15 +7,33 @@
     <link rel="stylesheet" href="login.css" />
     <script>
       const token = localStorage.getItem("token");
-
       if (token) {
-        window.location.replace("../Expenses/expenses.html");
+        fetch("http://localhost:5000/users/verify", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => {
+            if (res.ok) {
+              localStorage.setItem("isLogin", isLogIn);
+              window.replace("../index.html")
+            }
+          })
+          .catch((err) => console.log(err));
       }
     </script>
   </head>
   <body>
+    <header>
+      <div id="headerHeading">
+        <a href="../index.html"><h3>Day to Day Expenses</h3></a>
+      </div>
+      <div id="headerMenuSetting"></div>
+    </header>
     <div id="mainContainer">
-      <!-- <div class="signupImg"></div> -->
+      <div class="signupImg">
+        <h1>Welcome Back To The Expense Tracker</h1>
+      </div>
       <form id="loginForm">
         <h1>Login</h1>
         <div id="loginErrorField"></div>

@@ -1,10 +1,10 @@
 class User {
   constructor() {
-    this.baseURL = "http://localhost:3000/users";
+    this.baseURL = "http://localhost:5000/users";
   }
 
   async signup({ name, email, password }) {
-  console.log(name, email, password);
+    console.log(name, email, password);
     try {
       const res = await axios.post(this.baseURL + "/signup", {
         name,
@@ -13,7 +13,7 @@ class User {
       });
       return res;
     } catch (error) {
-       throw error;
+      throw error;
     }
   }
 
@@ -25,8 +25,13 @@ class User {
       });
       return res;
     } catch (error) {
-       throw error;
+      throw error;
     }
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    window.location.replace("./Login/login.html");
   }
 }
 

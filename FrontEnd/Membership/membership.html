@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Membership</title>
+    <link rel="stylesheet" href="membership.css" />
+    <script
+      src="https://kit.fontawesome.com/abdd26e157.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let isLogIn = false;
+      const token = localStorage.getItem("token");
+      if (token) {
+        fetch("http://localhost:5000/users/verify", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => {
+            if (res.ok) {
+              isLogIn = true;
+              localStorage.setItem("isLogin", isLogIn);
+            } else {
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            localStorage.setItem("isLogin", isLogIn);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <div id="headerHeading">
+        <a href="../index.html"><h3>Day to Day Expenses</h3></a>
+      </div>
+      <div id="headerMenu">
+        <a href="../SignUp/signup.html" class="signupBtn">Signup</a>
+        <a href="../Login/login.html" class="loginBtn">Login</a>
+        <a href="../Login/login.html" class="logoutBtn invisible">Logout</a>
+        <a href="#" class="membershipBtn invisible">Membership</a>
+      </div>
+      <div id="menu">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- sidemenu -->
+    <div id="menuBar">
+      <button id="removeBarBtn"><i class="fa-solid fa-xmark"></i></button>
+      <ul>
+        <li class="membershipBtn invisible"><a href="#">Membership</a></li>
+        <li class="logoutBtn user invisible">Logout</li>
+        <li class="loginBtn guest"><a href="../Login/login.html">Login</a></li>
+        <li class="signupBtn guest">
+          <a href="../SignUp//signup.html">SignUp</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- membership card slider -->
+    <div class="card-grid">
+      <!-- Free Plan -->
+      <div class="card">
+        <h2>🆓 Free Plan</h2>
+        <div class="price">$0 / year</div>
+        <ul class="features">
+          <li>Last 6 months of expense records</li>
+          <li class="disabled">Data export</li>
+          <li class="disabled">Multi-year tracking</li>
+          <li class="disabled">Premium support</li>
+        </ul>
+        <button class="btn" disabled>Get Started</button>
+      </div>
+
+      <!-- Basic Plan -->
+      <div class="card">
+        <h2>💼 Basic Plan</h2>
+        <div class="price">$10 / year</div>
+        <ul class="features">
+          <li>Last 2 years of expense records</li>
+          <li>Export to PDF/Excel</li>
+          <li>Email support</li>
+          <li class="disabled">Advanced analytics</li>
+        </ul>
+        <button class="btn basic">Choose Basic</button>
+      </div>
+
+      <!-- Premium Plan -->
+      <div class="card">
+        <h2>⭐ Premium Plan</h2>
+        <div class="price">$15 / year</div>
+        <ul class="features">
+          <li>Last 5 years of expense records</li>
+          <li>Export to PDF, Excel, CSV</li>
+          <li>Advanced analytics</li>
+          <li>Priority customer support</li>
+          <li>Early access to features</li>
+        </ul>
+        <button class="btn premium">Go Premium</button>
+      </div>
+    </div>
+
+    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script type="module" src="membership.js"></script>
+  </body>
+</html>

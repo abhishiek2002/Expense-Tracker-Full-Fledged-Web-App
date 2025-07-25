@@ -1,0 +1,158 @@
+:root {
+  --primary-teal-green: rgb(99, 177, 172);
+  --main-bg: rgb(255, 255, 255);
+  --primary-text: rgb(51, 51, 51);
+  --light-gray-box: rgb(218, 218, 218);
+  --warning-yellow: rgb(255, 193, 7);
+  --notification-red: rgb(244, 67, 54);
+  --fab-green: rgb(76, 154, 146);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--main-bg);
+  color: var(--primary-text);
+  font-family: sans-serif;
+  padding-top: clamp(50px, 7vw, 70px);
+  /* padding top of body equal to header height */
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+  height: clamp(50px, 7vw, 70px);
+  position: fixed;
+  top: 0;
+  background-color: var(--primary-teal-green);
+  color: var(--main-bg);
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-bg);
+}
+
+#headerMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(20px, 10vw, 100px);
+  font-size: large;
+  color: var(--primary-text);
+}
+
+.membershipBtn {
+  background-color: rgb(58, 245, 58);
+  /* color: var(--main-bg); */
+  color: white;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.invisible{
+  display: none;
+}
+
+.logoutBtn{
+  cursor: pointer;
+}
+
+/* --------------------- menu bar style ---------------------- */
+
+#menu {
+  display: none;
+  font-size: large;
+  cursor: pointer;
+}
+
+#menuBar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: max(150px, 10vw);
+  background-color: var(--primary-teal-green);
+  color: var(--primary-text);
+  box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.3);
+  z-index: 100;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 15px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+#menuBar ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#removeBarBtn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: auto;
+  padding: 5px;
+}
+
+#menuBar li {
+  list-style: none;
+}
+
+@media (width<520px) {
+  #headerMenu {
+    display: none;
+  }
+  #menu {
+    display: inline-block;
+  }
+}
+
+/* ------------- nav bar style --------------------- */
+
+nav {
+  background-color: var(--primary-teal-green);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-bg);
+  height: max-content;
+  padding: 0 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+nav li {
+  list-style: none;
+  padding: 2px 0px;
+  cursor: pointer;
+  color: var(--light-gray-box);
+}
+
+nav li.active {
+  color: var(--primary-text);
+}
+
+#indicator {
+  position: absolute;
+  width: 25%;
+  height: 2px;
+  background-color: black;
+  bottom: 0;
+  transform: translateX(100%);
+  transition: all 0.2s ease-in-out;
+}

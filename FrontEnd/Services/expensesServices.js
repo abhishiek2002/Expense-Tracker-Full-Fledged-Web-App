@@ -1,6 +1,6 @@
 class Expense {
   constructor() {
-    this.baseURL = "http://localhost:3000/expenses";
+    this.baseURL = "http://localhost:5000/expenses";
     this.token = localStorage.getItem("token");
   }
 
