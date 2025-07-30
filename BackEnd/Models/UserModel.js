@@ -16,9 +16,17 @@ const User = sequelize.define("User", {
     allowNull: false,
     unique: true,
   },
+  number: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  membership: {
+    type: DataTypes.ENUM(["Free", "Premium"]),
+    defaultValue: "Free",
   },
 });
 

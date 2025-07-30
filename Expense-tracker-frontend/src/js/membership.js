@@ -1,5 +1,6 @@
 // initialise cashfree
-import { getPaymentSessionId } from "../Services/paymentService.js";
+
+import { getPaymentSessionId } from "../utils/paymentService.js";
 
 const cashfree = Cashfree({
   mode: "sandbox",

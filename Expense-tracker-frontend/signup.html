@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/signup.css">
+    <title>Sign Up - Expense Tracker</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="signup-card">
+        <div class="header">
+          <h1>Create Account</h1>
+          <p>Start tracking your expenses today</p>
+        </div>
+
+        <div id="requestError"></div>
+        
+        <form id="signupForm" class="signup-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name">
+            <span class="error-message" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <span class="error-message" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+            <span class="error-message" id="phoneError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password">
+            <span class="error-message" id="passwordError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+            <span class="error-message" id="confirmPasswordError"></span>
+          </div>
+
+          <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          <div class="success-icon">✓</div>
+          <h3>Account Created Successfully!</h3>
+          <p>Welcome to Expense Tracker</p>
+        </div>
+
+        <div class="footer">
+          <p>Already have an account? <a href="login.html" class="login-link">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="./src/js/signup.js"></script>
+  </body>
+</html>

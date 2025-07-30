@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>ExpenseTracker - Track Your Expenses Easily</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h2>ExpenseTracker <span id="premium-membership">⭐</span></h2>
+          
+        </div>
+        <div class="nav-menu" id="nav-menu">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#pricing" class="nav-link">Pricing</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-auth" id="nav-auth">
+          <!-- Dynamic content based on login status -->
+        </div>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-container">
+        <div class="hero-content fade-in">
+          <h1 class="hero-title">Track Your Expenses Easily</h1>
+          <p class="hero-subtitle">Take control of your finances with our intuitive expense tracking app. Monitor your spending, set budgets, and achieve your financial goals with ease.</p>
+          <button href="expenses.html" target="_blank" class="cta-btn">Go to Expenses</button>
+        </div>
+        <div class="hero-visual fade-in">
+          <div class="expense-card">
+            <div class="card-header">
+              <h3>Today's Expenses</h3>
+              <span class="amount">$247.50</span>
+            </div>
+            <div class="expense-item">
+              <span class="category">🍔 Food</span>
+              <span class="cost">$45.00</span>
+            </div>
+            <div class="expense-item">
+              <span class="category">⛽ Transport</span>
+              <span class="cost">$25.50</span>
+            </div>
+            <div class="expense-item">
+              <span class="category">🛒 Shopping</span>
+              <span class="cost">$177.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>About ExpenseTracker</h2>
+          <p>Your personal finance companion that helps you understand where your money goes and how to make it work better for you.</p>
+        </div>
+        <div class="about-content reveal">
+          <p>ExpenseTracker is designed for everyday users who want to take control of their financial life without complexity. Our intuitive interface makes it simple to log expenses, categorize spending, and visualize your financial patterns. Whether you're saving for a vacation, paying off debt, or just want to be more mindful about spending, ExpenseTracker provides the insights you need to make informed financial decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Core Features</h2>
+          <p>Everything you need to manage your expenses effectively</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="service-icon">➕</div>
+            <h3>Add Expenses</h3>
+            <p>Quickly log your daily expenses with our simple and intuitive interface. Categorize spending and add notes for better tracking.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="service-icon">🗑️</div>
+            <h3>Delete Expenses</h3>
+            <p>Made a mistake? No problem. Easily remove incorrect entries to keep your expense records accurate and up-to-date.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="service-icon">✏️</div>
+            <h3>Update Expenses</h3>
+            <p>Edit expense details anytime. Update amounts, categories, or descriptions to ensure your financial data is always precise.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="service-icon">🏆</div>
+            <h3>Global Leaderboard</h3>
+            <p>Compare your savings goals with other users anonymously. Stay motivated by seeing how others achieve their financial objectives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Choose Your Plan</h2>
+          <p>Start free and upgrade when you need more features</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <div class="pricing-header">
+              <h3>Free</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="price amount">0</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>✓ Track up to 50 expenses</li>
+              <li>✓ Basic categorization</li>
+              <li>✓ Monthly reports</li>
+              <li>✓ Mobile responsive</li>
+              <li>✗ Advanced analytics</li>
+              <li>✗ Export data</li>
+            </ul>
+            <button class="pricing-btn">Get Started</button>
+          </div>
+          <div class="pricing-card featured reveal">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-header">
+              <h3>Premium</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="price amount">9</span>
+                <span class="period">/month</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>✓ Unlimited expenses</li>
+              <li>✓ Advanced categorization</li>
+              <li>✓ Detailed analytics</li>
+              <li>✓ Export to CSV/PDF</li>
+              <li>✓ Budget alerts</li>
+              <li>✓ Priority support</li>
+            </ul>
+            <button class="pricing-btn premium">Upgrade Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Get in Touch</h2>
+          <p>Have questions? We'd love to hear from you</p>
+        </div>
+        <div class="contact-content">
+          <form class="contact-form reveal" id="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="contact-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>ExpenseTracker</h3>
+            <p>Take control of your finances with our intuitive expense tracking solution.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#privacy">Privacy Policy</a></li>
+              <li><a href="#terms">Terms of Service</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 ExpenseTracker. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/js/main.js"></script>
+  </body>
+</html>

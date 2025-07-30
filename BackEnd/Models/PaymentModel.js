@@ -3,12 +3,11 @@ import sequelize from "../Utils/db-connection.js";
 
 const Payment = sequelize.define("Payment", {
   orderID: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
   },
   paymentSessionID: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   orderAmount: {
     type: DataTypes.INTEGER,
@@ -19,7 +18,7 @@ const Payment = sequelize.define("Payment", {
     allowNull: false,
   },
   paymentStatus: {
-    type: DataTypes.ENUM(["Pending", "Failed", "Success"]),
+    type: DataTypes.ENUM(["Pending", "Failure", "Success"]),
     defaultValue: "Pending",
   },
 });

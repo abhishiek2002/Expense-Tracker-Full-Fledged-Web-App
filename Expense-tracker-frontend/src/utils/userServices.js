@@ -1,15 +1,19 @@
+import axios from "axios";
+
 class User {
   constructor() {
     this.baseURL = "http://localhost:5000/users";
+    this.token = localStorage.getItem("token");
   }
 
-  async signup({ name, email, password }) {
+  async signup({ name, email, password, phone }) {
     console.log(name, email, password);
     try {
       const res = await axios.post(this.baseURL + "/signup", {
         name,
         email,
         password,
+        number: phone,
       });
       return res;
     } catch (error) {
@@ -23,6 +27,18 @@ class User {
         email,
         password,
       });
+
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getTopUsers() {
+    try {
+      const res = await axios.get(this.baseURL + "/top-users", {
+        headers: { Authorization: `Bearer ${this.token}` },
+      });
       return res;
     } catch (error) {
       throw error;
@@ -31,7 +47,7 @@ class User {
 
   logout() {
     localStorage.removeItem("token");
-    window.location.replace("./Login/login.html");
+    window.location.replace("login.html");
   }
 }
 

@@ -1,0 +1,22 @@
+{
+  "name": "project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.0.4",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-mpa": "^1.2.0"
+  },
+  "dependencies": {
+    "@cashfreepayments/cashfree-js": "^1.0.5",
+    "@tailwindcss/vite": "^4.1.11",
+    "axios": "^1.11.0",
+    "tailwindcss": "^4.1.11"
+  }
+}

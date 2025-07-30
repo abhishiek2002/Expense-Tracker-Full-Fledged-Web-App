@@ -1,11 +1,12 @@
 import Expense from "../Models/ExpenseModel.js";
 
 async function addExpense(req, res) {
-  const { amount, description, category } = req.body;
+  const {title, amount, description, category } = req.body;
   const user = req.user;
 
   try {
     const expense = await Expense.create({
+      title,
       amount,
       description,
       category,
@@ -26,7 +27,7 @@ async function addExpense(req, res) {
 async function getExpenses(req, res) {
   const user = req.user;
   try {
-    const expenses = await Expense.findAll({ where: { UserId: user.id } });
+    const expenses = await Expense.findAll({ where: { UserId: user.id } , order: [['createdAt', 'DESC']] });
 
     res.status(200).json({
       success: true,

@@ -1,4 +1,5 @@
 import Payment from "../Models/PaymentModel.js";
+import User from "../Models/UserModel.js";
 import { createOrder, fetchPayment } from "../Services/cashfree-payment.js";
 
 async function create(req, res) {
@@ -21,14 +22,19 @@ async function create(req, res) {
 
     const paymentSessionID = response.data.payment_session_id;
 
+    // save order to
     // save payment to database
-    // await Payment.create({
-    //   orderID: orderID.split("-")[1],
-    //   paymentSessionID,
-    //   orderAmount,
-    //   orderCurrency,
-    //   paymentStatus: "Pending",
-    // });
+    const payment = await Payment.create({
+      orderID,
+      paymentSessionID,
+      orderAmount,
+      orderCurrency,
+      paymentStatus: "Pending",
+    });
+
+    const paymentUser = await User.findByPk(user.id);
+
+    await paymentUser.addPayment(payment);
 
     res.status(200).json({
       paymentSessionID,
@@ -45,20 +51,58 @@ async function verifyPayment(req, res) {
   const orderID = req.params.orderID;
 
   try {
-    const response = await fetchPayment(orderID);
-    
+    let getOrderResponse = await fetchPayment(orderID); //Get Order API Response
+    let orderStatus;
 
-    // save payment to database
-    // await Payment.update({
-    //   orderID: orderID.split("-")[1],
-    //   paymentSessionID,
-    //   orderAmount,
-    //   orderCurrency,
-    //   paymentStatus: "Pending",
-    // });
+    if (
+      getOrderResponse.filter(
+        (transaction) => transaction.payment_status === "SUCCESS"
+      ).length > 0
+    ) {
+      orderStatus = "Success";
+    } else if (
+      getOrderResponse.filter(
+        (transaction) => transaction.payment_status === "PENDING"
+      ).length > 0
+    ) {
+      orderStatus = "Pending";
+    } else {
+      orderStatus = "Failure";
+    }
+
+
+    // save payment status to database
+    await Payment.update(
+      {
+        paymentStatus: orderStatus,
+      },
+      { where: { orderID: orderID } }
+    );
+
+    // update membership of user
+
+    if(orderStatus === "Success"){
+
+      // get userId
+      const order = await Payment.findByPk(orderID);
+
+      // update membership of user
+      if(order){
+        await User.update(
+          {
+            membership: 'Premium'
+          }, 
+          {
+            where: {
+              id: order.UserId,
+            }
+          }
+        )
+      }
+    }
 
     res.status(200).json({
-      response,
+      orderStatus,
     });
   } catch (error) {
     res.json({

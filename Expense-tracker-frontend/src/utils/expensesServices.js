@@ -1,3 +1,5 @@
+import axios from "axios"
+
 class Expense {
   constructor() {
     this.baseURL = "http://localhost:5000/expenses";
@@ -15,12 +17,13 @@ class Expense {
     }
   }
 
-  async addExpenses({ amount, description, category }) {
+  async addExpenses({title, amount, description, category }) {
     try {
       const res = await axios.post(
         this.baseURL + "/add",
         {
-          amount,
+          title,
+          amount: parseInt(amount, 10),
           description,
           category,
         },

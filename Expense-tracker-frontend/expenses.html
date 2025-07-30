@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="./src/css/expense.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <h1 class="app-title">💰 Expense Tracker</h1>
+        <p class="app-subtitle">Track your expenses and stay on budget</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <div class="grid-layout">
+          <!-- ---------------------------------------------Left Column ----------------------------------------- -->
+          <div class="left-column">
+            <!-- --------------------Add Expense Form------------------------------ -->
+            <section class="form-section">
+              <div class="section-header">
+                <h2>Add New Expense</h2>
+              </div>
+
+              <form id="expense-form" class="expense-form">
+                <!-- ---------title------------ -->
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    placeholder="Enter expense title"
+                  />
+                  <span class="error-message" id="title-error"></span>
+                </div>
+
+                <!-- ---------Amount------------ -->
+                <div class="form-group">
+                  <label for="amount">Amount ($)</label>
+                  <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    step="0.01"
+                    min="0"
+                    required
+                    placeholder="0.00"
+                  />
+                  <span class="error-message" id="amount-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- ---------Catergory------------ -->
+                  <label for="category">Category</label>
+                  <select id="category" name="category" required>
+                    <option value="">Select category</option>
+                    <option value="food">🍔 Food & Dining</option>
+                    <option value="transport">🚗 Transportation</option>
+                    <option value="entertainment">🎬 Entertainment</option>
+                    <option value="shopping">🛍️ Shopping</option>
+                    <option value="health">🏥 Health & Fitness</option>
+                    <option value="utilities">⚡ Utilities</option>
+                    <option value="other">📝 Other</option>
+                  </select>
+                  <span class="error-message" id="category-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- ---------Description------------ -->
+                  <label for="description">Description</label>
+                  <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    required
+                  />
+                  <span class="error-message" id="description-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  <span class="btn-text">Add Expense</span>
+                  <div class="btn-loading">
+                    <div class="spinner"></div>
+                  </div>
+                </button>
+
+                <span class="error-message" id="field-error"></span>
+              </form>
+            </section>
+
+            <!-- Expenses List -->
+            <section class="expenses-section">
+              <div class="section-header">
+                <h2>Recent Expenses</h2>
+                <button id="export-csv" class="btn btn-secondary">
+                  📊 Export CSV
+                </button>
+              </div>
+              <div id="expenses-list" class="expenses-list">
+                <div class="empty-state">
+                  <div class="empty-icon">📝</div>
+                  <p>No expenses yet. Add your first expense above!</p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Right Column -->
+          <div class="right-column">
+            <!-- Monthly Summary -->
+            <section class="summary-section">
+              <div class="section-header">
+                <h2>Monthly Summary</h2>
+              </div>
+              <div class="summary-card">
+                <div class="summary-month" id="current-month"></div>
+                <div class="summary-amount" id="monthly-total">$0.00</div>
+                <div class="summary-count" id="expense-count">0 expenses</div>
+                <div class="summary-chart">
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="monthly-progress"></div>
+                  </div>
+                  <div class="budget-info">
+                    <span>Budget: $2,000</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Global Leaderboard -->
+            <section class="leaderboard-section">
+              <div class="section-header">
+                <h2>Global Leaderboard</h2>
+                <span class="leaderboard-subtitle"
+                  >Top spenders this month</span
+                >
+              </div>
+              <div id="leaderboard" class="leaderboard">
+                <!-- Leaderboard will be populated by JavaScript -->
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+      <span class="toast-message"></span>
+    </div>
+
+    <script type="module" src="./src/js/expense.js"></script>
+  </body>
+</html>

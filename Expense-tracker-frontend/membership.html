@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Membership</title>
-    <link rel="stylesheet" href="membership.css" />
+    <link rel="stylesheet" href="../src/css/membership.css" />
     <script
       src="https://kit.fontawesome.com/abdd26e157.js"
       crossorigin="anonymous"
@@ -40,9 +40,9 @@
         <a href="../index.html"><h3>Day to Day Expenses</h3></a>
       </div>
       <div id="headerMenu">
-        <a href="../SignUp/signup.html" class="signupBtn">Signup</a>
-        <a href="../Login/login.html" class="loginBtn">Login</a>
-        <a href="../Login/login.html" class="logoutBtn invisible">Logout</a>
+        <a href="signup.html" class="signupBtn">Signup</a>
+        <a href="login.html" class="loginBtn">Login</a>
+        <a class="logoutBtn invisible">Logout</a>
         <a href="#" class="membershipBtn invisible">Membership</a>
       </div>
       <div id="menu">
@@ -56,9 +56,9 @@
       <ul>
         <li class="membershipBtn invisible"><a href="#">Membership</a></li>
         <li class="logoutBtn user invisible">Logout</li>
-        <li class="loginBtn guest"><a href="../Login/login.html">Login</a></li>
+        <li class="loginBtn guest"><a href="login.html">Login</a></li>
         <li class="signupBtn guest">
-          <a href="../SignUp//signup.html">SignUp</a>
+          <a href="signup.html">SignUp</a>
         </li>
       </ul>
     </div>
@@ -107,7 +107,6 @@
     </div>
 
     <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
-    <script type="module" src="membership.js"></script>
+    <script type="module" src="./src/js/membership.js"></script>
   </body>
 </html>
