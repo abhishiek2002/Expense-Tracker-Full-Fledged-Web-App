@@ -2,6 +2,8 @@ import User from "../Models/UserModel.js";
 import createToken from "../Utils/auth.js";
 import encryptInstance from "../Utils/encrypt.js";
 import sequelize from "../Utils/db-connection.js";
+import Expense from "../Models/ExpenseModel.js";
+import { Op, fn, col } from "sequelize";
 import { QueryTypes } from "sequelize";
 
 async function signupUser(req, res) {
@@ -96,6 +98,11 @@ async function verifyUser(req, res) {
 }
 
 async function topUsers(req, res) {
+  if (!req.user || req.user.membership !== "premium") {
+    return res.status(403).json({"unauthorized": "You need to be a premium user to access this feature."});
+  }
+
+  // Get the start and end of the current month
   const startOfMonth = new Date();
   startOfMonth.setDate(1);
   startOfMonth.setHours(0, 0, 0, 0);
@@ -129,10 +136,7 @@ async function topUsers(req, res) {
   LIMIT 10
 `,
       {
-        replacements: [
-          startOfMonth.toISOString(),
-          endOfMonth.toISOString(),
-        ],
+        replacements: [startOfMonth.toISOString(), endOfMonth.toISOString()],
         type: QueryTypes.SELECT,
       }
     );

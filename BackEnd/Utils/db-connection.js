@@ -4,7 +4,7 @@ import "dotenv/config"
 const sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
   host: "localhost",
   dialect: "mysql",
-  logging: false
+  logging: false, // Disable logging for cleaner output
 });
 
 (async () => {
