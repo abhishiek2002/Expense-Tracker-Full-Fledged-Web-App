@@ -230,7 +230,11 @@ function updateMonthlySummary() {
 async function updateLeaderboard() {
     // get top users from database or API
     const res = await userClassInstance.getTopUsers();
-    const topUsers = ((res.data.users.length > 1) ? res.data.users : [res.data.users]) || leaderboardUsers; // Fallback to dummy data if API fails
+    console.log('Top Users Response', res);
+    
+    const topUsers = res.data.users || leaderboardUsers; // Fallback to dummy data if API fails
+    
+    console.log('Top Users:', topUsers);
     
     
     const maxExpenses = Math.max(...topUsers.map(user => user.totalExpenses));
@@ -253,7 +257,7 @@ async function updateLeaderboard() {
                     </div>
                 </div>
                 <div class="leaderboard-amount">
-                    ${formatCurrency(user.totalExpenses)}
+                    ${formatCurrency(user.totalExpense)}
                 </div>
             </div>
         `;

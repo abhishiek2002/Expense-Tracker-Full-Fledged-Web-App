@@ -1,6 +1,7 @@
 import Payment from "../Models/PaymentModel.js";
 import User from "../Models/UserModel.js";
 import { createOrder, fetchPayment } from "../Services/cashfree-payment.js";
+import sequelize from "../Utils/db-connection.js";
 
 async function create(req, res) {
   const user = req.user;
@@ -9,6 +10,8 @@ async function create(req, res) {
   const orderID = "Order-" + Date.now();
   const customerID = String(user.id);
   const customerPhone = "9999999999";
+
+  const transaction = await sequelize.transaction();
 
   try {
     // create payment order and get payment id
@@ -24,24 +27,29 @@ async function create(req, res) {
 
     // save order to
     // save payment to database
-    const payment = await Payment.create({
-      orderID,
-      paymentSessionID,
-      orderAmount,
-      orderCurrency,
-      paymentStatus: "Pending",
-    });
+    const payment = await Payment.create(
+      {
+        orderID,
+        paymentSessionID,
+        orderAmount,
+        orderCurrency,
+        paymentStatus: "Pending",
+      },
+      { transaction }
+    );
 
-    const paymentUser = await User.findByPk(user.id);
+    const paymentUser = await User.findByPk(user.id, { transaction });
 
-    await paymentUser.addPayment(payment);
+    await paymentUser.addPayment(payment, { transaction });
 
+    transaction.commit();
     res.status(200).json({
       paymentSessionID,
     });
   } catch (error) {
     console.log("Error:", error);
-    res.json({
+    transaction.rollback();
+    res.status(502).json({
       error: error.message,
     });
   }
@@ -70,42 +78,48 @@ async function verifyPayment(req, res) {
       orderStatus = "Failure";
     }
 
+    // generate transaction for the database
+    const transaction = await sequelize.transaction();
 
     // save payment status to database
     await Payment.update(
       {
         paymentStatus: orderStatus,
       },
-      { where: { orderID: orderID } }
+      { where: { orderID: orderID }, transaction }
     );
 
     // update membership of user
 
-    if(orderStatus === "Success"){
-
+    if (orderStatus === "Success") {
       // get userId
-      const order = await Payment.findByPk(orderID);
+      const order = await Payment.findByPk(orderID, { transaction });
 
       // update membership of user
-      if(order){
+      if (order) {
         await User.update(
           {
-            membership: 'Premium'
-          }, 
+            membership: "Premium",
+          },
           {
             where: {
               id: order.UserId,
-            }
+            },
+            transaction,
           }
-        )
+        );
       }
     }
+
+    transaction.commit();
 
     res.status(200).json({
       orderStatus,
     });
   } catch (error) {
-    res.json({
+    transaction.rollback();
+    console.error("Error while verifying payment:", error);
+    res.status(502).json({
       error: error.message,
     });
   }

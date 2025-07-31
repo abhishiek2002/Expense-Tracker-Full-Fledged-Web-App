@@ -28,6 +28,16 @@ const User = sequelize.define("User", {
     type: DataTypes.ENUM(["Free", "Premium"]),
     defaultValue: "Free",
   },
+  totalExpense: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  expenseCount: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0, // Initialize expense count to 0
+  },
+  
+  
 });
 
 export default User;

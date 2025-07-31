@@ -1,13 +1,14 @@
 import User from "../Models/UserModel.js";
 import createToken from "../Utils/auth.js";
 import encryptInstance from "../Utils/encrypt.js";
-import sequelize from "../Utils/db-connection.js";
-import Expense from "../Models/ExpenseModel.js";
-import { Op, fn, col } from "sequelize";
-import { QueryTypes } from "sequelize";
 
 async function signupUser(req, res) {
   const { name, email, password, number } = req.body;
+
+  if (!name || !email || !password || !number) {
+    return res.status(400).json({ access: false, error: "All fields are required" });
+  }
+
   try {
     // check if user already exists or not
     const user = await User.findOne({ where: { email: email } });
@@ -27,15 +28,17 @@ async function signupUser(req, res) {
         password: encryptPassword,
       });
 
-      const { password, ...safeUser } = user.dataValues;
+      const { password:_, ...safeUser } = user.dataValues;
 
-      res.status(200).json({
+      res.status(201).json({
         success: true,
         message: "User is signup successfully",
         user: safeUser,
       });
     }
   } catch (error) {
+    console.log(error, "error while signup user" );
+    
     res.status(502).json({
       error: error.message,
     });
@@ -97,49 +100,70 @@ async function verifyUser(req, res) {
   }
 }
 
+// async function topUsers(req, res) {
+//   // if (!req.user || req.user.membership !== "premium") {
+//   //   return res.status(403).json({"unauthorized": "You need to be a premium user to access this feature."});
+//   // }
+
+
+//   try {
+  //   // Get the start and end of the current month
+//     const startOfMonth = new Date();
+//     startOfMonth.setDate(1);
+//     startOfMonth.setHours(0, 0, 0, 0);
+//     const endOfMonth = new Date(startOfMonth);
+//     endOfMonth.setMonth(endOfMonth.getMonth() + 1);
+
+//     const users = await sequelize.query(
+//       `
+//   SELECT 
+//     u.id,
+//     u.name,
+//     SUM(e.amount) AS totalExpenses,
+//     COUNT(e.id) AS expenseCount
+//   FROM 
+//     Users u
+//   JOIN 
+//     Expenses e ON u.id = e.userId
+//   WHERE 
+//     e.createdAt >= ? AND e.createdAt < ?
+//   GROUP BY 
+//     u.id
+//   ORDER BY 
+//     totalExpenses DESC
+//   LIMIT 10
+// `,
+//       {
+//         replacements: [startOfMonth.toISOString(), endOfMonth.toISOString()],
+//         type: QueryTypes.SELECT,
+//       }
+//     );
+
+//     res.status(200).json({
+//       success: true,
+//       users,
+//     });
+//   } catch (error) {
+//     res.status(502).json({
+//       success: false,
+//       error: error.message,
+//     });
+//   }
+// }
+
+
 async function topUsers(req, res) {
-  if (!req.user || req.user.membership !== "premium") {
+  if (!req.user || req.user.membership !== "Premium") {
     return res.status(403).json({"unauthorized": "You need to be a premium user to access this feature."});
   }
 
-  // Get the start and end of the current month
-  const startOfMonth = new Date();
-  startOfMonth.setDate(1);
-  startOfMonth.setHours(0, 0, 0, 0);
-  const endOfMonth = new Date(startOfMonth);
-  endOfMonth.setMonth(endOfMonth.getMonth() + 1);
-
   try {
-    const startOfMonth = new Date();
-    startOfMonth.setDate(1);
-    startOfMonth.setHours(0, 0, 0, 0);
-    const endOfMonth = new Date(startOfMonth);
-    endOfMonth.setMonth(endOfMonth.getMonth() + 1);
 
-    const users = await sequelize.query(
-      `
-  SELECT 
-    u.id,
-    u.name,
-    SUM(e.amount) AS totalExpenses,
-    COUNT(e.id) AS expenseCount
-  FROM 
-    Users u
-  JOIN 
-    Expenses e ON u.id = e.userId
-  WHERE 
-    e.createdAt >= ? AND e.createdAt < ?
-  GROUP BY 
-    u.id
-  ORDER BY 
-    totalExpenses DESC
-  LIMIT 10
-`,
-      {
-        replacements: [startOfMonth.toISOString(), endOfMonth.toISOString()],
-        type: QueryTypes.SELECT,
-      }
-    );
+    const users = await User.findAll({
+      attributes: ['id', 'name', 'totalExpense', 'expenseCount'],
+      order: [['totalExpense', 'DESC']],
+      limit: 10,
+    });
 
     res.status(200).json({
       success: true,
