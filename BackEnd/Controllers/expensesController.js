@@ -82,13 +82,11 @@ async function deleteExpense(req, res) {
   const transaction = await sequelize.transaction();
 
   try {
-    const expense = await Expense.destroy({
-      where: { id: id, UserId: user.id },
-      transaction,
-    });
+    // get the expense to be deleted------------------------
+    const expenseToDelete = await Expense.findByPk(id, { transaction });
 
-    // If the expense was not found or the user does not have permission to delete it
-    if (!expense) {
+    // If the expense was not found or the user does not have permission to delete it---------------------
+    if (!expenseToDelete || expenseToDelete.UserId !== user.id) {
       return res.status(404).json({
         success: false,
         message:
@@ -96,19 +94,28 @@ async function deleteExpense(req, res) {
       });
     }
 
-    await User.decrement(
-      {
-        totalExpense: expense.amount, // Decrement the total expense by the amount of the deleted expense
-        expenseCount: 1, // Decrement monthly expense count
-      },
-      {
-        where: { id: user.id },
-        transaction,
-      }
-    );
+    // delete the expense--------------------
+    const expense = await Expense.destroy({
+      where: { id: id, UserId: user.id },
+      transaction,
+    });
 
-    // If the expense was successfully deleted
-    // Commit the transaction if using one, otherwise just send the response
+    // Decrement the user's total expense and monthly expense count---------------------------
+    if (expenseToDelete.amount > 0) {
+      await User.decrement(
+        {
+          totalExpense: expenseToDelete.amount, // Decrement the total expense by the amount of the deleted expense
+          expenseCount: 1, // Decrement monthly expense count
+        },
+        {
+          where: { id: user.id },
+          transaction,
+        }
+      );
+    }
+
+    // If the expense was successfully deleted---------------------------------
+    // Commit the transaction if using one, otherwise just send the response--------------------------
 
     transaction.commit();
 

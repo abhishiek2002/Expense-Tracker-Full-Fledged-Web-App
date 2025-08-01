@@ -89,7 +89,6 @@ async function loginUser(req, res) {
 
 async function verifyUser(req, res) {
   const user = req.user;
-  console.log(user);
 
   if (user) {
     res.status(200).json({

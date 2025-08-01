@@ -10,6 +10,8 @@ export default {
         login: 'login.html',
         signup: 'signup.html',
         expense: 'expenses.html',
+        forgotPassword: 'forgotPassword.html',
+        resetPassword: 'resetPassword.html',
         // add more pages here
       },
     },
