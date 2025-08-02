@@ -12,6 +12,7 @@ export default {
         expense: 'expenses.html',
         forgotPassword: 'forgotPassword.html',
         resetPassword: 'resetPassword.html',
+        report: 'report.html',
         // add more pages here
       },
     },

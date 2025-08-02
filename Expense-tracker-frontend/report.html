@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day to Day Expenses Financial Report</title>
+    <link rel="stylesheet" href="./src/css/report.css">
+</head>
+<body>
+    <a href="/expenses.html" class="home-link">← Expenses</a>
+    
+    <div class="container">
+        <div class="timestamp" id="timestamp"></div>
+        
+        <h1 class="title">Day to Day Expenses</h1>
+        
+        <div id="loading" class="loading">Loading financial data...</div>
+        
+        <div id="content" style="display: none;">
+            <!-- Monthly Expenses Section -->
+            <div class="section">
+                <h2 class="section-title">Monthly Expenses - March 2021</h2>
+                <div class="table-container">
+                    <table id="monthly-expenses-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Income</th>
+                                <th>Expense</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthly-expenses-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Monthly Summary Section -->
+            <div class="section">
+                <h2 class="section-title">Monthly Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <h3>Total Income</h3>
+                        <div class="amount income" id="total-income">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total Expense</h3>
+                        <div class="amount expense" id="total-expense">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Savings</h3>
+                        <div class="amount savings" id="total-savings">$0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yearly Summary Section -->
+            <div class="section">
+                <h2 class="section-title">Yearly Summary</h2>
+                <div class="table-container">
+                    <table id="yearly-summary-table">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Income</th>
+                                <th>Expense</th>
+                                <th>Savings</th>
+                            </tr>
+                        </thead>
+                        <tbody id="yearly-summary-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="section">
+                <h2 class="section-title">Notes Report</h2>
+                <div class="table-container">
+                    <table id="notes-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notes-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="download-btn" onclick="downloadReport()" title="Download/Print Report">
+        ↓
+    </button>
+
+    <script type="module" src="./src/js/report.js"></script>
+</body>
+</html>

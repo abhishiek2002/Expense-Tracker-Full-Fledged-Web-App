@@ -1,0 +1,186 @@
+{
+  "monthlyExpenses": [
+    {
+      "date": "2021-03-01",
+      "title": "Salary",
+      "description": "Monthly salary payment",
+      "category": "Income",
+      "income": 5000,
+      "expense": 0
+    },
+    {
+      "date": "2021-03-02",
+      "title": "Groceries",
+      "description": "Weekly grocery shopping",
+      "category": "Food",
+      "income": 0,
+      "expense": 350
+    },
+    {
+      "date": "2021-03-03",
+      "title": "Gas Bill",
+      "description": "Monthly gas utility",
+      "category": "Utilities",
+      "income": 0,
+      "expense": 120
+    },
+    {
+      "date": "2021-03-05",
+      "title": "Freelance",
+      "description": "Web development project",
+      "category": "Income",
+      "income": 800,
+      "expense": 0
+    },
+    {
+      "date": "2021-03-08",
+      "title": "Restaurant",
+      "description": "Dinner with family",
+      "category": "Food",
+      "income": 0,
+      "expense": 85
+    },
+    {
+      "date": "2021-03-10",
+      "title": "Internet",
+      "description": "Monthly internet bill",
+      "category": "Utilities",
+      "income": 0,
+      "expense": 60
+    },
+    {
+      "date": "2021-03-12",
+      "title": "Rental Income",
+      "description": "Property rental payment",
+      "category": "Income",
+      "income": 1200,
+      "expense": 0
+    },
+    {
+      "date": "2021-03-15",
+      "title": "Car Maintenance",
+      "description": "Oil change and inspection",
+      "category": "Transportation",
+      "income": 0,
+      "expense": 150
+    },
+    {
+      "date": "2021-03-18",
+      "title": "Groceries",
+      "description": "Weekly grocery shopping",
+      "category": "Food",
+      "income": 0,
+      "expense": 320
+    },
+    {
+      "date": "2021-03-20",
+      "title": "Consulting",
+      "description": "Business consultation fees",
+      "category": "Income",
+      "income": 600,
+      "expense": 0
+    },
+    {
+      "date": "2021-03-22",
+      "title": "Electric Bill",
+      "description": "Monthly electricity bill",
+      "category": "Utilities",
+      "income": 0,
+      "expense": 95
+    },
+    {
+      "date": "2021-03-25",
+      "title": "Shopping",
+      "description": "Clothing and accessories",
+      "category": "Personal",
+      "income": 0,
+      "expense": 200
+    },
+    {
+      "date": "2021-03-28",
+      "title": "Investment Return",
+      "description": "Dividend payment",
+      "category": "Income",
+      "income": 300,
+      "expense": 0
+    },
+    {
+      "date": "2021-03-30",
+      "title": "Phone Bill",
+      "description": "Monthly mobile phone bill",
+      "category": "Utilities",
+      "income": 0,
+      "expense": 45
+    }
+  ],
+  "yearlySummary": [
+    {
+      "month": "January",
+      "income": 6200,
+      "expense": 1800,
+      "savings": 4400
+    },
+    {
+      "month": "February",
+      "income": 5800,
+      "expense": 1650,
+      "savings": 4150
+    },
+    {
+      "month": "March",
+      "income": 7900,
+      "expense": 1425,
+      "savings": 6475
+    },
+    {
+      "month": "April",
+      "income": 6500,
+      "expense": 1750,
+      "savings": 4750
+    },
+    {
+      "month": "May",
+      "income": 7200,
+      "expense": 1900,
+      "savings": 5300
+    },
+    {
+      "month": "June",
+      "income": 6800,
+      "expense": 2100,
+      "savings": 4700
+    }
+  ],
+  "notes": [
+    {
+      "date": "2021-03-01",
+      "title": "Budget Planning",
+      "notes": "Set monthly budget goals and expense tracking system"
+    },
+    {
+      "date": "2021-03-10",
+      "title": "Investment Review",
+      "notes": "Reviewed portfolio performance and adjusted investment strategy"
+    },
+    {
+      "date": "2021-03-15",
+      "title": "Tax Preparation",
+      "notes": "Started collecting documents for annual tax filing"
+    },
+    {
+      "date": "2021-03-20",
+      "title": "Emergency Fund",
+      "notes": "Added $500 to emergency savings account"
+    },
+    {
+      "date": "2021-03-25",
+      "title": "Expense Review",
+      "notes": "Monthly expense review - identified areas for cost reduction"
+    },
+    {
+      "date": "2021-03-30",
+      "title": "Financial Goals",
+      "notes": "Updated financial goals for Q2 and savings targets"
+    }
+  ]
+}
