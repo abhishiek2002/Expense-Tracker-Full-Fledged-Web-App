@@ -173,6 +173,8 @@ function initializeContactForm() {
     // Simulate form submission
     showLoadingState();
 
+    
+
     setTimeout(() => {
       // Create mailto link (placeholder for email integration)
       const subject = encodeURIComponent(
@@ -181,7 +183,7 @@ function initializeContactForm() {
       const body = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
       );
-      const mailtoLink = `mailto:contact@expensetracker.com?subject=${subject}&body=${body}`;
+      const mailtoLink = `mailto:kuntalabishek2002@gmail.com?subject=${subject}&body=${body}`;
 
       // Open email client
       window.location.href = mailtoLink;
@@ -470,3 +472,6 @@ document.addEventListener("keydown", function (e) {
     }
   }
 });
+
+
+

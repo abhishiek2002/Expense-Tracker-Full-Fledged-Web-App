@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { forgotPassword } from "../Controllers/passwordController.js";
+import { forgotPassword, resetPassword } from "../Controllers/passwordController.js";
 
 const router = Router();
 
 router.post("/forgotpassword", forgotPassword);
+router.post("/resetpassword/:id", resetPassword);
 
 export default router;

@@ -2,6 +2,8 @@ import sequelize from "../Utils/db-connection.js";
 import User from "./UserModel.js";
 import Expense from "./ExpenseModel.js";
 import Payment from "./PaymentModel.js";
+import ForgotPassword from "./ForgotPasswordModel.js";
+
 // user to expense association
 
 User.hasMany(Expense);
@@ -11,6 +13,11 @@ Expense.belongsTo(User);
 
 User.hasMany(Payment);
 Payment.belongsTo(User);
+
+// user to forgot password association
+
+User.hasMany(ForgotPassword);
+ForgotPassword.belongsTo(User);
 
 (async () => {
   try {
