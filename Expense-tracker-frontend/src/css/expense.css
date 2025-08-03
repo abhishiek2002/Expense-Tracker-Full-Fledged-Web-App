@@ -346,6 +346,26 @@ body {
   opacity: 0.5;
 }
 
+/* pagination btns */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pagination.disabled {
+  display: none;
+}
+
+.btn.disabled{
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
 /* Summary card */
 .summary-card {
   text-align: center;

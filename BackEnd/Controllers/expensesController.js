@@ -1,6 +1,7 @@
 import Expense from "../Models/ExpenseModel.js";
 import User from "../Models/UserModel.js";
 import sequelize from "../Utils/db-connection.js";
+import { Op } from "sequelize";
 
 async function addExpense(req, res) {
   const { title, amount, description, category } = req.body;
@@ -57,11 +58,36 @@ async function addExpense(req, res) {
 
 async function getExpenses(req, res) {
   const user = req.user;
+  const byMonth = req.query.byMonth === "true"; // Check if the request is for current month expenses
+  const currentMonth = new Date().getMonth(); // Get current month (0-11)
+  let expenses;
   try {
-    const expenses = await Expense.findAll({
-      where: { UserId: user.id },
-      order: [["createdAt", "DESC"]],
-    });
+    // If byMonth is true, filter expenses for the current month
+    if (byMonth) {
+      expenses = await Expense.findAll({
+        where: {
+          UserId: user.id,
+          createdAt: {
+            [Op.gte]: new Date(
+              new Date().getFullYear(),
+              currentMonth,
+              1
+            ),
+            [Op.lt]: new Date(
+              new Date().getFullYear(),
+              currentMonth + 1,
+              1
+            ),
+          },
+        },
+        order: [["createdAt", "DESC"]],
+      });
+    } else {
+      expenses = await Expense.findAll({
+        where: { UserId: user.id },
+        order: [["createdAt", "DESC"]],
+      });
+    }
 
     res.status(200).json({
       success: true,

@@ -17,6 +17,18 @@ class Expense {
     }
   }
 
+  async getCurrentMonthExpenses() {
+    try {
+      const res = await axios.get(this.baseURL + '?byMonth=true', {
+        headers: { Authorization: `Bearer ${this.token}` },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+    
+
   async addExpenses({title, amount, description, category }) {
     try {
       const res = await axios.post(
