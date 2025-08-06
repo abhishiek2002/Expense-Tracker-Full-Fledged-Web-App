@@ -39,10 +39,10 @@ function renderMonthlyExpenses(expenses) {
   const tbody = document.getElementById("monthly-expenses-body");
   tbody.innerHTML = "";
 
-  expenses.forEach((expense) => {
+  expenses?.forEach((expense) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-                    <td>${formatDate(expense.date)}</td>
+                    <td>${formatDate(expense?.date || new Date())}</td>
                     <td>${expense.title}</td>
                     <td>${expense.description}</td>
                     <td>${expense.category}</td>

@@ -348,6 +348,15 @@ body {
 
 /* pagination btns */
 
+#expenses-per-page {
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

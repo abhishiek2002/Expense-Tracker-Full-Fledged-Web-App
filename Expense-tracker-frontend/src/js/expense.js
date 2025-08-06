@@ -8,6 +8,7 @@ let recentExpenses = [];
 let expenses = [];
 let page = 1;
 let totalPages = 1;
+let pageExpenses = 10; // Number of expenses per page
 
 // Dummy leaderboard data
 let leaderboardUsers = [
@@ -38,6 +39,7 @@ const nextPageBtn = document.getElementById("next-page");
 const pagination = document.querySelector(".pagination");
 const totalPagesElement = document.getElementById("total-pages");
 const cntPageElement = document.getElementById("cnt-page");
+const expensesPerPageSelect = document.getElementById("expenses-per-page");
 
 // Initialize application
 async function initializeApp() {
@@ -59,7 +61,17 @@ async function initializeApp() {
       deleteExpense(expenseId);
     }
   });
+
   //   Pagination event listeners
+  expensesPerPageSelect.addEventListener("change", () => {
+    pageExpenses = parseInt(expensesPerPageSelect.value, 10);
+    page = 1; // Reset to first page
+    renderExpenses(page);
+    totalPages = Math.ceil(expenses.length / pageExpenses);
+    totalPagesElement.textContent = totalPages;
+    cntPageElement.textContent = page;
+  });
+
   previousPageBtn.addEventListener("click", () => {
     page--;
     if (page < 1) {
@@ -248,7 +260,8 @@ function renderExpenses(page = 1) {
 
   expensesList.innerHTML = renderingExpense
     .map((expense, index) => {
-      if (index < (page - 1) * 10 || index >= 10 * page) return ""; // Limit to 10 expenses for performance
+      if (index < (page - 1) * pageExpenses || index >= pageExpenses * page)
+        return ""; // Limit to 10 expenses for performance
       return `
         <div class="expense-item" data-id="${expense.id}">
             <div class="expense-info">
@@ -277,7 +290,7 @@ function renderExpenses(page = 1) {
     .join("");
 
   // visible the pagination div
-  totalPages = Math.ceil(renderingExpense.length / 10);
+  totalPages = Math.ceil(renderingExpense.length / pageExpenses);
   pagination.classList.remove("disabled");
   totalPagesElement.textContent = totalPages;
   cntPageElement.textContent = page;
@@ -436,4 +449,3 @@ async function handleFormSubmit(event) {
     console.error("Error adding expense:", error);
   }
 }
-

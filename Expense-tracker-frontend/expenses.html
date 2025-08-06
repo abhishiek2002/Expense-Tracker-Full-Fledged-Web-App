@@ -107,6 +107,18 @@
             <section class="expenses-section">
               <div class="section-header">
                 <h2>Recent Expenses</h2>
+
+                <!-- dynamic pagination -->
+
+                <select name="expenses-per-page" id="expenses-per-page">
+                  <option value="" selected disabled hidden >Page Expenses</option>
+                  <option value="2">2</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                </select>
+                
                 <button id="export-csv" class="btn btn-secondary">
                   📊 Export CSV
                 </button>
