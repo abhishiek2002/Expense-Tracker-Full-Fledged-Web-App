@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:5000/contact";
+const baseURL = "https://expense-tracker-full-fledged-web-app.onrender.com";
 
 const sendMessage = async (name, email, message) => {
   try {

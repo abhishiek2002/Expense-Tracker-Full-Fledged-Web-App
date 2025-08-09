@@ -8,7 +8,7 @@ async function validateUser() {
   }
 
   try {
-    const response = await axios.get("http://localhost:5000/users/verify", {
+    const response = await axios.get("https://expense-tracker-full-fledged-web-app.onrender.com/users/verify", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

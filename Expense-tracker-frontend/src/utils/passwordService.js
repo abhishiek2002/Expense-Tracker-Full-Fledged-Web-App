@@ -1,7 +1,7 @@
 import axios from "axios";
 
 class Password {
-  static baseUrl = "http://localhost:5000/password";
+  static baseUrl = "https://expense-tracker-full-fledged-web-app.onrender.com/password";
 
   static async forgotPassword(email) {
     try {

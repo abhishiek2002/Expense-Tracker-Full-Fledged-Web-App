@@ -1,11 +1,13 @@
 import axios from "axios";
 
+const baseURL = "https://expense-tracker-full-fledged-web-app.onrender.com";
+
 export async function getPaymentSessionId({ orderAmount, orderCurrency }) {
   const token = localStorage.getItem("token");
 
   try {
-    const response = await axios.post(
-      "http://localhost:5000/payments/order",
+    const response = await axios.post(baseURL + 
+      "/payments/order",
       {
         orderAmount,
         orderCurrency,
@@ -25,8 +27,8 @@ export async function getPaymentSessionId({ orderAmount, orderCurrency }) {
 export async function getPaymentStatus(orderID) {
   const token = localStorage.getItem('token');
   try {
-    const res = await axios.get(
-      `http://localhost:5000/payments/verify/${orderID}`, {
+    const res = await axios.get(baseURL + 
+      `/payments/verify/${orderID}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

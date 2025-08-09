@@ -2,7 +2,7 @@ import axios from "axios"
 
 class Expense {
   constructor() {
-    this.baseURL = "http://localhost:5000/expenses";
+    this.baseURL = "https://expense-tracker-full-fledged-web-app.onrender.com/expenses";
     this.token = localStorage.getItem("token");
   }
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 class User {
   constructor() {
-    this.baseURL = "http://localhost:5000/users";
+    this.baseURL = "https://expense-tracker-full-fledged-web-app.onrender.com/users";
     this.token = localStorage.getItem("token");
   }
 
