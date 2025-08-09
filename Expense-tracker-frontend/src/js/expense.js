@@ -219,15 +219,29 @@ function addExpense(expense) {
 }
 
 async function deleteExpense(id) {
-  const expenseIndex = expenses.findIndex((expense) => expense.id == id);
+  let isDeletedRecentExpense = false; // let assume deleted expense is not from recent expense
+
+  // because we didn't know user will delete expense from recent or previous expenses
+  let expenseIndex = expenses.findIndex((expense) => expense.id == id);
+  if (expenseIndex === -1) {
+    isDeletedRecentExpense = true;
+    expenseIndex = recentExpenses.findIndex((expense) => expense.id == id);
+  }
 
   if (expenseIndex > -1) {
     console.log(`Deleting expense with ID: ${id}`);
 
     await expenseClassInstance.deleteExpenses(id);
     // Remove from local state
-    const deletedExpense = expenses[expenseIndex];
-    expenses.splice(expenseIndex, 1);
+    const deletedExpense =
+      expenses[expenseIndex] || recentExpenses[expenseIndex];
+
+    // Delete from expense list
+    isDeletedRecentExpense
+      ? recentExpenses.splice(expenseIndex, 1)
+      : expenses.splice(expenseIndex, 1);
+
+    // re-render all things
     saveExpenses();
     renderExpenses();
     updateMonthlySummary();
@@ -301,8 +315,10 @@ function updateMonthlySummary() {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
+  const allExpenses = [...expenses, ...recentExpenses];
+
   // Filter expenses for current month
-  const monthlyExpenses = expenses.filter((expense) => {
+  const monthlyExpenses = allExpenses.filter((expense) => {
     const expenseDate = new Date(expense.createdAt);
     return (
       expenseDate.getMonth() === currentMonth &&

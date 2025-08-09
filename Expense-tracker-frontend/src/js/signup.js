@@ -23,13 +23,6 @@ class SignupValidator {
       input.addEventListener("blur", () => this.validateField(input));
       input.addEventListener("input", () => this.clearError(input));
     });
-
-    // Add fade-in animation to body element
-    document.body.style.opacity = "0";
-    window.addEventListener("load", () => {
-      document.body.style.transition = "opacity 0.5s ease-in";
-      document.body.style.opacity = "1";
-    });
   }
 
   async validateUserLogin() {
@@ -42,6 +35,9 @@ class SignupValidator {
       } else {
         // after validation , make body visible
         document.body.style.display = "flex";
+        // Add fade-in animation to body element
+        document.body.style.transition = "opacity 0.5s ease-in";
+        document.body.style.opacity = "1";
       }
     } catch (error) {
       console.log("Error", error);

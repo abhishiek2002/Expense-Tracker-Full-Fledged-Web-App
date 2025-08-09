@@ -1,6 +1,7 @@
 import { load } from "@cashfreepayments/cashfree-js";
 import validateUser from "../utils/validate.js";
 import { getPaymentSessionId } from "../utils/paymentService.js";
+import { sendMessage } from "../utils/sendMessage.js";
 
 // Simulated user authentication state
 let cashfree;
@@ -157,12 +158,13 @@ function initializeScrollAnimations() {
 function initializePricing() {
   if (user.membership === "Premium") {
     pricingBtn.style.cursor = "not-allowed";
+    pricingBtn.disabled = true;
   }
 }
 
 // Contact Form Handler
 function initializeContactForm() {
-  contactForm.addEventListener("submit", function (e) {
+  contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formData = new FormData(contactForm);
@@ -173,29 +175,38 @@ function initializeContactForm() {
     // Simulate form submission
     showLoadingState();
 
-    
-
-    setTimeout(() => {
-      // Create mailto link (placeholder for email integration)
-      const subject = encodeURIComponent(
-        "Contact Form Submission from " + name
-      );
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-      );
-      const mailtoLink = `mailto:kuntalabishek2002@gmail.com?subject=${subject}&body=${body}`;
-
-      // Open email client
-      window.location.href = mailtoLink;
-
-      // Reset form and show success message
+    // send mail
+    try {
+      await sendMessage(name, email, message);
+      showNotification("Message sent successfully!", "success");
+    } catch (error) {
+      showNotification(error?.message, "error");
+    } finally {
       contactForm.reset();
       hideLoadingState();
-      showNotification(
-        "Message sent successfully! Your email client should open.",
-        "success"
-      );
-    }, 1500);
+    }
+
+    // setTimeout(() => {
+    //   // Create mailto link (placeholder for email integration)
+    //   const subject = encodeURIComponent(
+    //     "Contact Form Submission from " + name
+    //   );
+    //   const body = encodeURIComponent(
+    //     `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    //   );
+    //   const mailtoLink = `mailto:kuntalabishek2002@gmail.com?subject=${subject}&body=${body}`;
+
+    //   // Open email client
+    //   window.location.href = mailtoLink;
+
+    //   // Reset form and show success message
+    //   contactForm.reset();
+    //   hideLoadingState();
+    //   showNotification(
+    //     "Message sent successfully! Your email client should open.",
+    //     "success"
+    //   );
+    // }, 1500);
   });
 }
 
@@ -271,10 +282,11 @@ document.addEventListener("click", async function (e) {
         );
         document.querySelector("#nav-auth .primary").click();
       } else {
-        showNotification(
-          "Welcome to ExpenseTracker Free! Sign up to get started.",
-          "success"
-        );
+        if (user.membership === "Premium") {
+          showNotification("You are already a premium user", "success");
+        } else {
+          showNotification("You are not need to do anything", "success");
+        }
       }
     } else {
       if (!isLoggedIn) {
@@ -472,6 +484,3 @@ document.addEventListener("keydown", function (e) {
     }
   }
 });
-
-
-

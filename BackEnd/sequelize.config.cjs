@@ -1,7 +1,7 @@
 // sequelize.config.js (CommonJS)
-require('dotenv').config();
-const config = require('./config/config.json');
+// require('dotenv').config();
+// const config = require('./config/config.json');
 
-module.exports = config;
+// module.exports = config;
 
 
