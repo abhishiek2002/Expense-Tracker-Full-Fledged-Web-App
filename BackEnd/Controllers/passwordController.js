@@ -1,4 +1,4 @@
-import User from "../Models/userModel.js";
+import User from "../Models/UserModel.js";
 import { sendForgotPasswordEmail } from "../Services/nodemailer.js";
 import { v4 as uuidv4 } from "uuid";
 import ForgotPassword from "../Models/ForgotPasswordModel.js";
