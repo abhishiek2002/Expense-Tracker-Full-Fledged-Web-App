@@ -25,7 +25,7 @@ async function createOrder({
       customer_phone: customerPhone,
     },
     order_meta: {
-      return_url: "http://localhost:3000/verify.html?orderID=" + orderID,
+      return_url: "https://expense-tracker-full-fledged-web-ap.vercel.app/verify.html?orderID=" + orderID,
       payment_methods: "ccc, upi, nb",
     },
     order_expiry_time: formattedExpiryDate,
