@@ -18,23 +18,27 @@ const pricingBtn = document.querySelector(".pricing-btn.premium");
 
 // Initialize the application
 document.addEventListener("DOMContentLoaded", async function () {
-  await validate();
+  try {
+    await validate();
 
-  // payment gateway sdk initialize
-  var initializeSDK = async function () {
-    cashfree = await load({
-      mode: "sandbox",
-    });
-  };
+    // payment gateway sdk initialize
+    var initializeSDK = async function () {
+      cashfree = await load({
+        mode: "sandbox",
+      });
+    };
 
-  initializeSDK();
-
-  initializeNavbar();
-  initializeScrollAnimations();
-  initializeMobileNav();
-  initializePricing();
-  initializeContactForm();
-  initializeSmoothScrolling();
+    initializeSDK();
+  } catch (error) {
+    console.log(error);
+  } finally {
+    initializeNavbar();
+    initializeScrollAnimations();
+    initializeMobileNav();
+    initializePricing();
+    initializeContactForm();
+    initializeSmoothScrolling();
+  }
 });
 
 // validate user
