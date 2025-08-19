@@ -77,7 +77,7 @@ const sendForgotPasswordEmail = async (name, toEmail, id) => {
         <p>Hi ${name},</p>
         <p>We received a request to reset your password. Click the button below to reset it:</p>
         <p style="text-align: center;">
-          <a href="http://localhost:5173/resetPassword.html?id=${id}" class="button">Reset Password</a>
+          <a href="https://expense-tracker-full-fledged-web-ap.vercel.app/resetPassword.html?id=${id}" class="button">Reset Password</a>
         </p>
         <p>If you did not request this, please ignore this email. This link will expire in 30 minutes for your security.</p>
         <p>Thanks,<br>Your Company Name</p>
