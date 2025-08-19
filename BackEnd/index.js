@@ -1,4 +1,5 @@
 import express from "express";
+import helmet from "helmet";
 import "dotenv/config"
 import cors from "cors";
 import "./Models/index.js";
@@ -12,7 +13,8 @@ import contactRouter from "./Routers/contactRouter.js"
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({origin: "https://expense-tracker-full-fledged-web-ap.vercel.app"}));
+app.use(helmet());
 
 app.use((req, res, next) => {
   console.log(req.method, req.url);
